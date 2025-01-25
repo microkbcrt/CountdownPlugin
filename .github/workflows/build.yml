@@ -1,12 +1,6 @@
 name: Java CI
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
@@ -21,6 +15,7 @@ jobs:
     - name: Set up JDK 21
       uses: actions/setup-java@v2
       with:
+        distribution: 'openjdk' # 或者 'zulu', 'adopt', 'openjdk' 等
         java-version: '21'
 
     - name: Build with Gradle
