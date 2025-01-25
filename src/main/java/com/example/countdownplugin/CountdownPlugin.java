@@ -4,6 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
+import org.bukkit.Note;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -68,6 +70,9 @@ public class CountdownPlugin extends JavaPlugin {
                 } else if (timeLeft > 0) {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         player.sendTitle(ChatColor.RED.toString() + timeLeft, "", 10, 20, 10);
+                        if (timeLeft <= 10) {
+                            player.playNote(player.getLocation(), Note.instrument(Note.Tone.G), Note.natural(1, Note.Tone.G));
+                        }
                     }
                 } else {
                     for (Player player : Bukkit.getOnlinePlayers()) {
@@ -97,7 +102,8 @@ public class CountdownPlugin extends JavaPlugin {
                     Firework fw = loc.getWorld().spawn(loc, Firework.class);
                     FireworkMeta meta = fw.getFireworkMeta();
                     Color color = Color.fromRGB(random.nextInt(256), random.nextInt(256), random.nextInt(256)); // Random color
-                    meta.addEffect(FireworkEffect.builder().withColor(color).with(Type.BALL_LARGE).trail(true).build());
+                    FireworkEffect.Type type = FireworkEffect.Type.values()[random.nextInt(FireworkEffect.Type.values().length)]; // Random type
+                    meta.addEffect(FireworkEffect.builder().withColor(color).with(type).trail(true).build());
                     fw.setFireworkMeta(meta);
                 }
             }
