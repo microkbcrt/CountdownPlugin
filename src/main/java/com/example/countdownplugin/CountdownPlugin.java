@@ -4,8 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
-import org.bukkit.Note;
-import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -16,6 +14,7 @@ import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.entity.Firework;
 import java.util.Random;
 import org.bukkit.Color;
+import org.bukkit.Sound;
 
 public class CountdownPlugin extends JavaPlugin {
     private boolean countdownActive = false;
@@ -71,7 +70,7 @@ public class CountdownPlugin extends JavaPlugin {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         player.sendTitle(ChatColor.RED.toString() + timeLeft, "", 10, 20, 10);
                         if (timeLeft <= 10) {
-                            player.playNote(player.getLocation(), Note.instrument(Note.Tone.G), Note.natural(1, Note.Tone.G));
+                            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_GUITAR, 1.0f, 1.0f); // 播放音符盒的“sol”音
                         }
                     }
                 } else {
