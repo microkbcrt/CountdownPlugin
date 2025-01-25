@@ -12,6 +12,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.FireworkEffect.Type;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.entity.Firework;
+import java.util.Random;
+import org.bukkit.Color;
 
 public class CountdownPlugin extends JavaPlugin {
     private boolean countdownActive = false;
@@ -89,11 +91,13 @@ public class CountdownPlugin extends JavaPlugin {
                     cancel();
                     return;
                 }
+                Random random = new Random();
                 for (Player player : Bukkit.getOnlinePlayers()) {
-                    Location loc = player.getLocation();
+                    Location loc = player.getLocation().add(0, 15, 0); // 15 blocks above the player
                     Firework fw = loc.getWorld().spawn(loc, Firework.class);
                     FireworkMeta meta = fw.getFireworkMeta();
-                    meta.addEffect(FireworkEffect.builder().withColor(org.bukkit.Color.RED).with(Type.BALL_LARGE).trail(true).build());
+                    Color color = Color.fromRGB(random.nextInt(256), random.nextInt(256), random.nextInt(256)); // Random color
+                    meta.addEffect(FireworkEffect.builder().withColor(color).with(Type.BALL_LARGE).trail(true).build());
                     fw.setFireworkMeta(meta);
                 }
             }
