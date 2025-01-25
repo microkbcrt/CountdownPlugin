@@ -97,7 +97,7 @@ public class CountdownPlugin extends JavaPlugin {
                 }
                 Random random = new Random();
                 for (Player player : Bukkit.getOnlinePlayers()) {
-                    Location loc = player.getLocation().add(0, 8, 0); // 15 blocks above the player
+                    Location loc = player.getLocation().add(10, 8, 0); // 8 blocks above the player
                     Firework fw = loc.getWorld().spawn(loc, Firework.class);
                     FireworkMeta meta = fw.getFireworkMeta();
                     Color color = Color.fromRGB(random.nextInt(256), random.nextInt(256), random.nextInt(256)); // Random color
