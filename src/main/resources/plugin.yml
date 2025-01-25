@@ -1,0 +1,18 @@
+name: CountdownPlugin
+main: com.example.countdownplugin.CountdownPlugin
+version: 1.0
+api-version: 1.21
+commands:
+  countdown:
+    description: Starts the countdown
+    permission: countdownplugin.countdown
+  stopfirework:
+    description: Stops the fireworks
+    permission: countdownplugin.stopfirework
+permissions:
+  countdownplugin.countdown:
+    description: Allows the player to start the countdown
+    default: op
+  countdownplugin.stopfirework:
+    description: Allows the player to stop the fireworks
+    default: op
