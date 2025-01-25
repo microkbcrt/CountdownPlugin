@@ -22,4 +22,11 @@ jar {
             'Main-Class': 'com.example.countdownplugin.CountdownPlugin'
         )
     }
+    from {
+        configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    from {
+        // Ensure the plugin.yml is included in the JAR
+        'src/main/resources'
+    }
 }
